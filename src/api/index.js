@@ -1,4 +1,9 @@
-const processRawData = () => {
+const heapConversion = (papaCSV) => {
+  console.log(papaCSV);
+};
+
+const processRawData = (rawData) => {
+  let heaps = heapConversion(rawData);
   return [
     {
       Winner: "Winner1",
