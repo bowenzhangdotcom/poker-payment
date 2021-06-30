@@ -1,15 +1,15 @@
 import React from "react";
 import styles from "./App.module.css";
+import Papa from "papaparse";
 import FileSubmit from "./components/FileSubmit/FileSubmit";
 import ResultsTable from "./components/ResultsTable/ResultsTable";
-
+import { processRawData } from "./api/index.js";
 class App extends React.Component {
   state = {};
 
   constructor(props) {
     super(props);
     this.state = {
-      rawData: {},
       processedData: [
         {
           Winner: "Winner1",
@@ -32,26 +32,15 @@ class App extends React.Component {
 
   handleFileChange = (event) => {
     if (event.length > 0) {
-      //   let reader = new FileReader();
-      //   reader.onload = (e) => {
-      //     let obj = JSON.parse(e.target.result);
-      //     this.setState({ rawHingeData: obj }, () => {
-      //       let dates = getStartEndDate(this.state.rawHingeData);
-      //       let pHingeData = processHingeData(
-      //         this.state.rawHingeData,
-      //         dates["startDate"],
-      //         dates["endDate"]
-      //       );
-      //       this.setState({
-      //         processedHingeData: pHingeData,
-      //         startDate: dates["startDate"],
-      //         endDate: dates["endDate"],
-      //         header: "Your Dating Dashboard",
-      //       });
-      //     });
-      //   };
-      //   reader.readAsText(event[0]);
-      console.log(event);
+      Papa.parse(event[0], {
+        header: true,
+        complete: (results) => {
+          console.log(results);
+          let ledgerData = processRawData(results);
+          console.log(ledgerData);
+          this.setState({ processedData: ledgerData });
+        },
+      });
     }
   };
 
