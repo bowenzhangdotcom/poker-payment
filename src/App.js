@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./App.module.css";
 import FileSubmit from "./components/FileSubmit/FileSubmit";
+import ResultsTable from "./components/ResultsTable/ResultsTable";
 
 class App extends React.Component {
   state = {};
@@ -12,13 +13,18 @@ class App extends React.Component {
       processedData: [
         {
           Winner: "Winner1",
-          Loser: "Loswer1",
+          Loser: "Loser1",
           Amount: 1,
         },
         {
           Winner: "Winner2",
-          Loser: "Loswer2",
+          Loser: "Loser2",
           Amount: 2,
+        },
+        {
+          Winner: "Winner3",
+          Loser: "Loser3",
+          Amount: 3,
         },
       ],
     };
@@ -55,6 +61,9 @@ class App extends React.Component {
         <div>Header Text</div>
         <div className={styles.SubmitContainer}>
           <FileSubmit handleFileChange={this.handleFileChange} />
+        </div>
+        <div className={styles.ResultsTable}>
+          <ResultsTable data={this.state.processedData} />
         </div>
       </div>
     );
