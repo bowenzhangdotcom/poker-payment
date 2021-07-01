@@ -35,9 +35,7 @@ class App extends React.Component {
       Papa.parse(event[0], {
         header: true,
         complete: (results) => {
-          console.log(results);
           let ledgerData = processRawData(results);
-          console.log(ledgerData);
           this.setState({ processedData: ledgerData });
         },
       });

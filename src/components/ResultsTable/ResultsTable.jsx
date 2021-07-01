@@ -8,7 +8,7 @@ class ResultsTable extends React.Component{
         for (let i = 0; i < ledger.length; i++){
             rows.push(
             <div className={styles.TextRow} key={i}>
-                {ledger[i]["Loser"]} pays {ledger[i]["Winner"]} {ledger[i]["Amount"]}
+                {ledger[i]["Loser"]} pays {ledger[i]["Winner"]} ${ledger[i]["Amount"]}
             </div>);
         }
         return (
