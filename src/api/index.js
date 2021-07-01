@@ -1,9 +1,12 @@
+const identifyData = (rawData) => {
+  return "PokerNow";
+};
+
 const heapConversion = (papaCSV) => {
   console.log(papaCSV);
 };
 
-const processRawData = (rawData) => {
-  let heaps = heapConversion(rawData);
+const heapToArr = (heaps) => {
   return [
     {
       Winner: "Winner1",
@@ -26,5 +29,13 @@ const processRawData = (rawData) => {
       Amount: 4,
     },
   ];
+};
+
+const processRawData = (rawData) => {
+  let dataSource = "";
+  dataSource = identifyData(rawData);
+  let heaps = heapConversion(rawData, dataSource);
+  let resultArray = heapToArr(heaps);
+  return resultArray;
 };
 export { processRawData };
