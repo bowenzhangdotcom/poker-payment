@@ -45,7 +45,7 @@ class App extends React.Component {
   render() {
     return (
       <div className={styles.Body}>
-        <div>Header Text</div>
+        <div>Formatting will be done later</div>
         <div className={styles.SubmitContainer}>
           <FileSubmit handleFileChange={this.handleFileChange} />
         </div>

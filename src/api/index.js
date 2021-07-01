@@ -1,19 +1,49 @@
 import { Heap } from "heap-js";
 
 const identifyData = (rawData) => {
-  return "PokerNow";
+  let data = rawData.data[0];
+  if (
+    "buy_in" in data &&
+    "buy_out" in data &&
+    "net" in data &&
+    "player_id" in data &&
+    "player_nickname" in data &&
+    "session_end_at" in data &&
+    "session_start_at" in data &&
+    "stack" in data
+  ) {
+    return "PokerNow";
+  }
+  alert("Invalid data source - check that the file is the original export!");
+};
+
+const processPokerNow = (pokerNowData) => {
+  let obj = {};
+  for (let i = 0; i < pokerNowData.length; i++) {
+    let row = pokerNowData[i];
+    if (Object.keys(row).length > 1) {
+      let name = `${row["player_nickname"]} (${row["player_id"]})`;
+      if (!(name in obj)) {
+        obj[name] = 0;
+      }
+      obj[name] += parseInt(row["net"]);
+    }
+  }
+  return obj;
 };
 
 const heapConversion = (papaCSV, source) => {
+  let csvData = {};
+  if (source === "PokerNow") {
+    csvData = processPokerNow(papaCSV.data);
+  }
   let minArray = [];
   let maxArray = [];
-  let csvData = papaCSV.data;
-
   let balanceCheck = 0;
-  for (let i = 0; i < csvData.length; i++) {
-    let row = csvData[i];
-    let person = row["player_nickname"];
-    let balance = parseFloat(row["net"]);
+
+  for (let key of Object.keys(csvData)) {
+    let person = key;
+    let balance = csvData[key];
     let arr = [person, balance];
     if (balance < 0) {
       minArray.push(arr);
@@ -22,6 +52,7 @@ const heapConversion = (papaCSV, source) => {
     }
     balanceCheck += balance;
   }
+
   if (balanceCheck !== 0) {
     alert("Your net total doesn't add up to 0");
   }
@@ -62,8 +93,7 @@ const heapConversion = (papaCSV, source) => {
 };
 
 const processRawData = (rawData) => {
-  let dataSource = "";
-  dataSource = identifyData(rawData);
+  let dataSource = identifyData(rawData);
   let resultArray = heapConversion(rawData, dataSource);
   return resultArray;
 };
