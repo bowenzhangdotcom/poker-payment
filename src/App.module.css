@@ -2,13 +2,15 @@ body {
   display: block;
   font-family: Roboto;
   color: rgba(0, 0, 0, 1);
-  width: 98%;
+  width: 95%;
   height: 100%;
   justify-content: center;
   display: flex;
-  margin: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .SubmitContainer {
-  margin: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
