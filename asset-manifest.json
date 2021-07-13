@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/poker-payment/static/css/main.aabc6567.chunk.css",
-    "main.js": "/poker-payment/static/js/main.3bcde762.chunk.js",
-    "main.js.map": "/poker-payment/static/js/main.3bcde762.chunk.js.map",
+    "main.css": "/poker-payment/static/css/main.10d61baf.chunk.css",
+    "main.js": "/poker-payment/static/js/main.d29500f7.chunk.js",
+    "main.js.map": "/poker-payment/static/js/main.d29500f7.chunk.js.map",
     "runtime-main.js": "/poker-payment/static/js/runtime-main.fb242a7c.js",
     "runtime-main.js.map": "/poker-payment/static/js/runtime-main.fb242a7c.js.map",
-    "static/js/2.a4571330.chunk.js": "/poker-payment/static/js/2.a4571330.chunk.js",
-    "static/js/2.a4571330.chunk.js.map": "/poker-payment/static/js/2.a4571330.chunk.js.map",
+    "static/js/2.cae64d39.chunk.js": "/poker-payment/static/js/2.cae64d39.chunk.js",
+    "static/js/2.cae64d39.chunk.js.map": "/poker-payment/static/js/2.cae64d39.chunk.js.map",
     "index.html": "/poker-payment/index.html",
-    "static/css/main.aabc6567.chunk.css.map": "/poker-payment/static/css/main.aabc6567.chunk.css.map",
-    "static/js/2.a4571330.chunk.js.LICENSE.txt": "/poker-payment/static/js/2.a4571330.chunk.js.LICENSE.txt"
+    "static/css/main.10d61baf.chunk.css.map": "/poker-payment/static/css/main.10d61baf.chunk.css.map",
+    "static/js/2.cae64d39.chunk.js.LICENSE.txt": "/poker-payment/static/js/2.cae64d39.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.fb242a7c.js",
-    "static/js/2.a4571330.chunk.js",
-    "static/css/main.aabc6567.chunk.css",
-    "static/js/main.3bcde762.chunk.js"
+    "static/js/2.cae64d39.chunk.js",
+    "static/css/main.10d61baf.chunk.css",
+    "static/js/main.d29500f7.chunk.js"
   ]
 }
