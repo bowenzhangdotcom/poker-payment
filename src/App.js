@@ -45,10 +45,11 @@ class App extends React.Component {
   render() {
     return (
       <div className={styles.Body}>
-        <div>Formatting will be done later</div>
+        <h1>PokerNow Payments</h1>
         <div className={styles.SubmitContainer}>
           <FileSubmit handleFileChange={this.handleFileChange} />
         </div>
+        <h2>Payments</h2>
         <div className={styles.ResultsTable}>
           <ResultsTable data={this.state.processedData} />
         </div>
