@@ -3,6 +3,7 @@ import styles from "./App.module.css";
 import Papa from "papaparse";
 import FileSubmit from "./components/FileSubmit/FileSubmit";
 import ResultsTable from "./components/ResultsTable/ResultsTable";
+import FormEntry from "./components/FormEntry/FormEntry";
 import { processRawData } from "./api/index.js";
 class App extends React.Component {
   state = {};
@@ -42,12 +43,20 @@ class App extends React.Component {
     }
   };
 
+  handleFormEntry = (formData) => {
+    let ledgerData = processRawData(formData);
+    this.setState({ processedData: ledgerData });
+  };
+
   render() {
     return (
       <div className={styles.Body}>
         <h1>PokerNow Payments</h1>
         <div className={styles.SubmitContainer}>
           <FileSubmit handleFileChange={this.handleFileChange} />
+        </div>
+        <div className={styles.TableContainer}>
+          <FormEntry handleFormEntry={this.handleFormEntry} />
         </div>
         <h2>Payments</h2>
         <div className={styles.ResultsTable}>
