@@ -13,18 +13,18 @@ class App extends React.Component {
     this.state = {
       processedData: [
         {
-          Winner: "Winner1",
-          Loser: "Loser1",
+          Winner: "exampleWinner1",
+          Loser: "exampleLoser1",
           Amount: 1,
         },
         {
-          Winner: "Winner2",
-          Loser: "Loser2",
+          Winner: "exampleWinner2",
+          Loser: "exampleLoser2",
           Amount: 2,
         },
         {
-          Winner: "Winner3",
-          Loser: "Loser3",
+          Winner: "exampleWinner3",
+          Loser: "exampleLoser3",
           Amount: 3,
         },
       ],
