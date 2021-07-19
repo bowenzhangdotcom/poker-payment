@@ -1,23 +1,36 @@
 import { Heap } from "heap-js";
 
 const identifyData = (rawData) => {
-  let data = rawData.data[0];
-  if (
-    "buy_in" in data &&
-    "buy_out" in data &&
-    "net" in data &&
-    "player_id" in data &&
-    "player_nickname" in data &&
-    "session_end_at" in data &&
-    "session_start_at" in data &&
-    "stack" in data
-  ) {
-    return "PokerNow";
+  if (Array.isArray(rawData)) {
+    if (
+      rawData.length > 0 &&
+      "name" in rawData[0] &&
+      "buyin" in rawData[0] &&
+      "buyout" in rawData[0]
+    ) {
+      return "FormEntry";
+    }
+  } else if (typeof rawData === "object") {
+    let data = rawData.data[0];
+    if (
+      "buy_in" in data &&
+      "buy_out" in data &&
+      "net" in data &&
+      "player_id" in data &&
+      "player_nickname" in data &&
+      "session_end_at" in data &&
+      "session_start_at" in data &&
+      "stack" in data
+    ) {
+      return "PokerNow";
+    }
   }
+
   alert("Invalid data source - check that the file is the original export!");
 };
 
-const processPokerNow = (pokerNowData) => {
+const processPokerNow = (papaCSV) => {
+  let pokerNowData = papaCSV.data;
   let obj = {};
   for (let i = 0; i < pokerNowData.length; i++) {
     let row = pokerNowData[i];
@@ -32,10 +45,26 @@ const processPokerNow = (pokerNowData) => {
   return obj;
 };
 
-const heapConversion = (papaCSV, source) => {
+const processFormEntry = (formData) => {
+  let obj = {};
+  for (let i = 0; i < formData.length; i++) {
+    let row = formData[i];
+    let name = row["name"];
+    let net = parseInt(row["buyout"]) - parseInt(row["buyin"]);
+    if (!(name in obj)) {
+      obj[name] = 0;
+    }
+    obj[name] += net;
+  }
+  return obj;
+};
+
+const heapConversion = (rawData, source) => {
   let csvData = {};
   if (source === "PokerNow") {
-    csvData = processPokerNow(papaCSV.data);
+    csvData = processPokerNow(rawData);
+  } else if (source === "FormEntry") {
+    csvData = processFormEntry(rawData);
   }
   let minArray = [];
   let maxArray = [];

@@ -3,9 +3,12 @@ import { useState } from "react";
 
 export default function FormEntry(props) {
   const [people, setPeople] = useState([
-      {"name": "Bowen", "buyin": 420, "buyout": 69},
-      {"name": "Juan", "buyin": 420, "buyout": 69},
-      {"name": "Cody", "buyin": 420, "buyout": 69}]);
+      {"name": "Lost69", "buyin": 69, "buyout": 0},
+      {"name": "Won68", "buyin": 1, "buyout": 69},
+      {"name": "Won20", "buyin": 420, "buyout": 440},
+      {"name": "Lost15", "buyin": 420, "buyout": 405},
+      {"name": "Lost5", "buyin": 420, "buyout": 415},
+      {"name": "Won1", "buyin": 420, "buyout": 421}]);
   const [displayForm, setDisplayForm] = useState(true);
   const [newPerson, setNewPerson] = useState({
     name: "",
