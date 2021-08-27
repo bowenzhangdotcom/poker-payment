@@ -60,7 +60,7 @@ export default function FormEntry(props) {
               <td className={styles.TableNumber}>{row.net}</td>
               <td>
                 <button 
-                    className="deleteRow" 
+                    className={styles.deleteRow} 
                     onClick={deleteRow}
                     id={index}>
                         Delete
@@ -102,17 +102,17 @@ export default function FormEntry(props) {
               className={styles.InputBox}
             />
           </div>
-          <button onClick={addPerson} className="addRow">
+          <button onClick={addPerson} className={styles.addButton}>
             Add Person
           </button>
         </div>
       ) : (
-        <button onClick={() => setDisplayForm(!displayForm)} className="addRow">
+        <button onClick={() => setDisplayForm(!displayForm)} className={styles.addButton}>
           Add Row
         </button>
       )}
       <div>
-          <button onClick={passFormData}>Submit!</button>
+          <button onClick={passFormData} className={styles.submitForm}>Submit!</button>
       </div>
     </div>
   );

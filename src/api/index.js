@@ -81,7 +81,7 @@ const heapConversion = (rawData, source) => {
   }
 
   if (balanceCheck !== 0) {
-    alert(`Your net total is off by ${balanceCheck}`);
+    alert(`Net total is off by ${balanceCheck}`);
   }
 
   const minPriorityComparator = (a, b) => a[1] - b[1];
