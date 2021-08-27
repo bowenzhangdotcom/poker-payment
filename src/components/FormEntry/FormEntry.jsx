@@ -3,7 +3,7 @@ import { useState } from "react";
 
 export default function FormEntry(props) {
   const [people, setPeople] = useState([
-      {"name": "Lost69", "buyin": 69, "buyout": 0},
+      {"name": "Lost69", "net": -69},
       {"name": "Won68", "buyin": 1, "buyout": 69},
       {"name": "Won20", "buyin": 420, "buyout": 440},
       {"name": "Lost15", "buyin": 420, "buyout": 405},
@@ -47,6 +47,7 @@ export default function FormEntry(props) {
             <th>Name</th>
             <th>Buy-in</th>
             <th>Buy-out</th>
+            <th>Net</th>
           </tr>
         </thead>
         <tbody>
@@ -55,6 +56,7 @@ export default function FormEntry(props) {
               <td>{row.name}</td>
               <td>{row.buyin}</td>
               <td>{row.buyout}</td>
+              <td>{row.net}</td>
               <td>
                 <button 
                     className="deleteRow" 
@@ -86,6 +88,12 @@ export default function FormEntry(props) {
             onChange={handleOnChange}
             value={newPerson.buyout}
             name="buyout"
+          />
+                    <input
+            placeholder="Net"
+            onChange={handleOnChange}
+            value={newPerson.net}
+            name="net"
           />
           <button onClick={addPerson} className="addRow">
             Add Person

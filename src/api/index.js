@@ -2,14 +2,7 @@ import { Heap } from "heap-js";
 
 const identifyData = (rawData) => {
   if (Array.isArray(rawData)) {
-    if (
-      rawData.length > 0 &&
-      "name" in rawData[0] &&
-      "buyin" in rawData[0] &&
-      "buyout" in rawData[0]
-    ) {
-      return "FormEntry";
-    }
+    return "FormEntry";
   } else if (typeof rawData === "object") {
     let data = rawData.data[0];
     if (
@@ -50,11 +43,16 @@ const processFormEntry = (formData) => {
   for (let i = 0; i < formData.length; i++) {
     let row = formData[i];
     let name = row["name"];
-    let net = parseInt(row["buyout"]) - parseInt(row["buyin"]);
+    let netVal;
+    if (row["net"]) {
+      netVal = parseInt(row["net"]);
+    } else {
+      netVal = parseInt(row["buyout"]) - parseInt(row["buyin"]);
+    }
     if (!(name in obj)) {
       obj[name] = 0;
     }
-    obj[name] += net;
+    obj[name] += netVal;
   }
   return obj;
 };
@@ -83,7 +81,7 @@ const heapConversion = (rawData, source) => {
   }
 
   if (balanceCheck !== 0) {
-    alert("Your net total doesn't add up to 0");
+    alert(`Your net total is off by ${balanceCheck}`);
   }
 
   const minPriorityComparator = (a, b) => a[1] - b[1];
