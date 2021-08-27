@@ -41,22 +41,23 @@ export default function FormEntry(props) {
 
   return (
     <div>
-      <table>
+      <table className={styles.DataTable}>
         <thead>
-          <tr>
+          <tr className={styles.TableHead}>
             <th>Name</th>
             <th>Buy-in</th>
             <th>Buy-out</th>
             <th>Net</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
           {people.map((row, index) => (
             <tr>
-              <td>{row.name}</td>
-              <td>{row.buyin}</td>
-              <td>{row.buyout}</td>
-              <td>{row.net}</td>
+              <td className={styles.TableName}>{row.name}</td>
+              <td className={styles.TableNumber}>{row.buyin}</td>
+              <td className={styles.TableNumber}>{row.buyout}</td>
+              <td className={styles.TableNumber}>{row.net}</td>
               <td>
                 <button 
                     className="deleteRow" 
@@ -71,30 +72,36 @@ export default function FormEntry(props) {
       </table>
       {displayForm ? (
         <div>
-          <input
-            placeholder="Name"
-            onChange={handleOnChange}
-            value={newPerson.name}
-            name="name"
-          />
-          <input
-            placeholder="Buy-in"
-            onChange={handleOnChange}
-            value={newPerson.buyin}
-            name="buyin"
-          />
-          <input
-            placeholder="Buy-out"
-            onChange={handleOnChange}
-            value={newPerson.buyout}
-            name="buyout"
-          />
-                    <input
-            placeholder="Net"
-            onChange={handleOnChange}
-            value={newPerson.net}
-            name="net"
-          />
+          <div>
+            <input
+              placeholder="Name"
+              onChange={handleOnChange}
+              value={newPerson.name}
+              name="name"
+              className={styles.InputBox}
+            />
+            <input
+              placeholder="Buy-in"
+              onChange={handleOnChange}
+              value={newPerson.buyin}
+              name="buyin"
+              className={styles.InputBox}
+            />
+            <input
+              placeholder="Buy-out"
+              onChange={handleOnChange}
+              value={newPerson.buyout}
+              name="buyout"
+              className={styles.InputBox}
+            />
+            <input
+              placeholder="Net"
+              onChange={handleOnChange}
+              value={newPerson.net}
+              name="net"
+              className={styles.InputBox}
+            />
+          </div>
           <button onClick={addPerson} className="addRow">
             Add Person
           </button>
