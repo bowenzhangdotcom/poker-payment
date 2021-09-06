@@ -32,7 +32,7 @@ const processPokerNow = (papaCSV) => {
       if (!(name in obj)) {
         obj[name] = 0;
       }
-      obj[name] += parseInt(row["net"]);
+      obj[name] += parseFloat(row["net"]);
     }
   }
   return obj;
@@ -45,9 +45,9 @@ const processFormEntry = (formData) => {
     let name = row["name"];
     let netVal;
     if (row["net"]) {
-      netVal = parseInt(row["net"]);
+      netVal = parseFloat(row["net"]);
     } else {
-      netVal = parseInt(row["buyout"]) - parseInt(row["buyin"]);
+      netVal = parseFloat(row["buyout"]) - parseFloat(row["buyin"]);
     }
     if (!(name in obj)) {
       obj[name] = 0;

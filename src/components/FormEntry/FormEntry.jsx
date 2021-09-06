@@ -69,7 +69,7 @@ export default function FormEntry(props) {
       </table>
       {displayForm ? (
         <div>
-          <div>
+          <div className = {styles.PeopleAdd}>
             <input
               placeholder="Name"
               onChange={handleOnChange}
