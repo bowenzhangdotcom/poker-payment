@@ -53,7 +53,7 @@ class App extends React.Component {
   render() {
     return (
       <div className={styles.Body}>
-        <h1>Poker Payments</h1>
+        <h1>Poker Payment</h1>
         <div className={styles.SubmitContainer}>
           <FileSubmit handleFileChange={this.handleFileChange} />
         </div>

@@ -9,7 +9,7 @@ class ResultsTable extends React.Component{
         for (const key in playerNets){
             rows.push(
             <div className={styles.TextRow} key={key}>
-                {key} nets out ${playerNets[key]}
+                {key} nets out {playerNets[key]}
             </div>);
         }
         rows.push(
