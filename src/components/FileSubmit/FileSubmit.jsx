@@ -25,7 +25,7 @@ export default function FileSubmit(props) {
     <div className={styles.DropzoneAreaContainer}>
       <DropzoneArea
         onChange={props.handleFileChange}
-        dropzoneText={"Select your PokerNow CSV or enter buy-ins in the form"}
+        dropzoneText={"Select a PokerNow CSV, DonkHouse CSV, or enter details in the form"}
         filesLimit={1}
         showPreviewsInDropzone = {true}
         useChipsForPreview ={true}

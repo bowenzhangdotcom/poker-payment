@@ -5,7 +5,12 @@ const identifyData = (rawData) => {
     return "FormEntry";
   } else if (typeof rawData === "object") {
     let data = rawData.data[0];
-    if (
+    let hasDonkHouseKeyRegex = Object.keys(data).some(function (key) {
+      return /Most recent sessions as of/.test(key);
+    });
+    if (hasDonkHouseKeyRegex) {
+      return "DonkHouse";
+    } else if (
       "buy_in" in data &&
       "buy_out" in data &&
       "net" in data &&
@@ -18,7 +23,6 @@ const identifyData = (rawData) => {
       return "PokerNow";
     }
   }
-
   alert("Invalid data source - check that the file is the original export!");
 };
 
@@ -34,6 +38,30 @@ const processPokerNow = (papaCSV) => {
       }
       obj[name] += parseFloat(row["net"]);
     }
+  }
+  return obj;
+};
+
+const processDonkHouse = (papaCSV) => {
+  let DonkHouseData = papaCSV.data;
+  let obj = {};
+  for (let i = 1; i < DonkHouseData.length; i++) {
+    let row = DonkHouseData[i];
+    const primaryKey = Object.keys(row)[0];
+    let user = row[primaryKey];
+    if (user === "" || user === "End time:") {
+      return obj;
+    }
+    let valueArray = row["__parsed_extra"];
+    let [In, Out, Net, ChipsInPlay, Contact] = valueArray;
+
+    let nameKey;
+    if (Contact.length > 0 && Contact !== "None provided") {
+      nameKey = Contact;
+    } else {
+      nameKey = user;
+    }
+    obj[nameKey] = parseFloat(Net);
   }
   return obj;
 };
@@ -63,6 +91,8 @@ const heapConversion = (rawData, source) => {
     csvData = processPokerNow(rawData);
   } else if (source === "FormEntry") {
     csvData = processFormEntry(rawData);
+  } else if (source === "DonkHouse") {
+    csvData = processDonkHouse(rawData);
   }
   let minArray = [];
   let maxArray = [];
@@ -116,12 +146,12 @@ const heapConversion = (rawData, source) => {
     }
     resultArray.push(obj);
   }
-  return resultArray;
+  return { payouts: resultArray, playerNets: csvData };
 };
 
 const processRawData = (rawData) => {
   let dataSource = identifyData(rawData);
-  let resultArray = heapConversion(rawData, dataSource);
-  return resultArray;
+  let results = heapConversion(rawData, dataSource);
+  return results;
 };
 export { processRawData };

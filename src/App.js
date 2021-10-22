@@ -11,23 +11,25 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      processedData: [
-        {
-          Winner: "exampleWinner1",
-          Loser: "exampleLoser1",
-          Amount: 1,
+      processedData: {
+        payouts: [
+          {
+            Winner: "Won68",
+            Loser: "Lost69",
+            Amount: 68,
+          },
+          {
+            Winner: "Won1",
+            Loser: "Lost69",
+            Amount: 1,
+          },
+        ],
+        playerNets: {
+          Lost69: -69,
+          Won68: 68,
+          Won1: 1,
         },
-        {
-          Winner: "exampleWinner2",
-          Loser: "exampleLoser2",
-          Amount: 2,
-        },
-        {
-          Winner: "exampleWinner3",
-          Loser: "exampleLoser3",
-          Amount: 3,
-        },
-      ],
+      },
     };
   }
 
