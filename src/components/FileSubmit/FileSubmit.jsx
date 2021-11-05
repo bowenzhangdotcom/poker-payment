@@ -26,8 +26,8 @@ export default function FileSubmit(props) {
       <DropzoneArea
         onChange={props.handleFileChange}
         dropzoneText={"Select a PokerNow CSV, DonkHouse CSV, or enter details in the form"}
-        filesLimit={1}
-        showPreviewsInDropzone = {true}
+        filesLimit={10}
+        showPreviewsInDropzone = {false}
         useChipsForPreview ={true}
         dropzoneClass={classes.myDropZone}
         dropzoneParagraphClass={classes.myDropZoneText}

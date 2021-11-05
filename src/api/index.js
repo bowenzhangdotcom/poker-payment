@@ -85,7 +85,7 @@ const processFormEntry = (formData) => {
   return obj;
 };
 
-const heapConversion = (rawData, source) => {
+const createPlayerNets = (rawData, source, currentPlayerNets) => {
   let csvData = {};
   if (source === "PokerNow") {
     csvData = processPokerNow(rawData);
@@ -94,6 +94,17 @@ const heapConversion = (rawData, source) => {
   } else if (source === "DonkHouse") {
     csvData = processDonkHouse(rawData);
   }
+
+  for (let key of Object.keys(currentPlayerNets)) {
+    if (key in csvData) {
+      csvData[key] += currentPlayerNets[key];
+    } else {
+      csvData[key] = currentPlayerNets[key];
+    }
+  }
+  return csvData;
+};
+const heapConversion = (csvData, source) => {
   let minArray = [];
   let maxArray = [];
   let balanceCheck = 0;
@@ -149,9 +160,10 @@ const heapConversion = (rawData, source) => {
   return { payouts: resultArray, playerNets: csvData };
 };
 
-const processRawData = (rawData) => {
+const processRawData = (rawData, currentPlayerNets) => {
   let dataSource = identifyData(rawData);
-  let results = heapConversion(rawData, dataSource);
+  let playerNets = createPlayerNets(rawData, dataSource, currentPlayerNets);
+  let results = heapConversion(playerNets);
   return results;
 };
 export { processRawData };

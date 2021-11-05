@@ -13,21 +13,21 @@ class App extends React.Component {
     this.state = {
       processedData: {
         payouts: [
-          {
-            Winner: "Won68",
-            Loser: "Lost69",
-            Amount: 68,
-          },
-          {
-            Winner: "Won1",
-            Loser: "Lost69",
-            Amount: 1,
-          },
+          // {
+          //   Winner: "Won68",
+          //   Loser: "Lost69",
+          //   Amount: 68,
+          // },
+          // {
+          //   Winner: "Won1",
+          //   Loser: "Lost69",
+          //   Amount: 1,
+          // },
         ],
         playerNets: {
-          Lost69: -69,
-          Won68: 68,
-          Won1: 1,
+          // Lost69: -69,
+          // Won68: 68,
+          // Won1: 1,
         },
       },
     };
@@ -38,7 +38,10 @@ class App extends React.Component {
       Papa.parse(event[0], {
         header: true,
         complete: (results) => {
-          let ledgerData = processRawData(results);
+          let ledgerData = processRawData(
+            results,
+            this.state.processedData["playerNets"]
+          );
           this.setState({ processedData: ledgerData });
         },
       });
@@ -46,7 +49,10 @@ class App extends React.Component {
   };
 
   handleFormEntry = (formData) => {
-    let ledgerData = processRawData(formData);
+    let ledgerData = processRawData(
+      formData,
+      this.state.processedData["playerNets"]
+    );
     this.setState({ processedData: ledgerData });
   };
 
