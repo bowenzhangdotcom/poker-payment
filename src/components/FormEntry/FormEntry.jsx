@@ -35,7 +35,7 @@ export default function FormEntry(props) {
   const passFormData = (event) => {
     props.handleFormEntry(people)
   }
-
+ 
   return (
     <div>
       <table className={styles.DataTable}>

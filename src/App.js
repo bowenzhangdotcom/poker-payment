@@ -49,11 +49,17 @@ class App extends React.Component {
   };
 
   handleFormEntry = (formData) => {
-    let ledgerData = processRawData(
-      formData,
-      this.state.processedData["playerNets"]
+    // Clear out details first
+    this.setState(
+      { processedData: { payouts: [], playerNets: {} } },
+      function () {
+        let ledgerData = processRawData(
+          formData,
+          this.state.processedData["playerNets"]
+        );
+        this.setState({ processedData: ledgerData });
+      }
     );
-    this.setState({ processedData: ledgerData });
   };
 
   render() {

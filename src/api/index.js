@@ -123,6 +123,10 @@ const heapConversion = (csvData, source) => {
 
   if (balanceCheck !== 0) {
     alert(`Net total is off by ${balanceCheck}`);
+    return {
+      payouts: [{ "Double check your balance!": 69 }],
+      playerNets: { "Things aren't adding up here!": 420 },
+    };
   }
 
   const minPriorityComparator = (a, b) => a[1] - b[1];

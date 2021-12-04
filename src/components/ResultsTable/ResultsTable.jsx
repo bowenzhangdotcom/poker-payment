@@ -4,7 +4,7 @@ import styles from './ResultsTable.module.css';
 class ResultsTable extends React.Component{
     render() {
         let rows = [];
-        const playerNets = this.props.data["playerNets"]
+        let playerNets = this.props.data["playerNets"]
             for (const key in playerNets){
                 rows.push(
                 <div className={styles.TextRow} key={key}>
@@ -12,8 +12,8 @@ class ResultsTable extends React.Component{
                 </div>);
             }
         rows.push(
-            <div className={styles.TextRow} key={"spacingBoi"}>-------</div>);
-        const ledger = this.props.data["payouts"]
+            <div className={styles.TextRow} key={"spacingBoi"}>------------</div>);
+        let ledger = this.props.data["payouts"]
         if (ledger.length > 0) {
             for (let i = 0; i < ledger.length; i++){
                 rows.push(
